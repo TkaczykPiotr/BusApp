@@ -1,3 +1,42 @@
-<div class="content-body">
-  <router-outlet></router-outlet>>
-</div>
+<mat-toolbar class="mat-elevation-z8">
+  <button
+    mat-icon-button
+    *ngIf="sidenav.mode === 'over'"
+    (click)="sidenav.toggle()"
+  >
+    <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+    <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+  </button>
+  Welcome to Bus App
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+
+
+    <button mat-button  class="menu-button" routerLink="/home">
+      <mat-icon  class="menu-font">home</mat-icon>
+      <span class="menu-font">Home</span>
+    </button>
+    <button mat-button class="menu-button" routerLink="/SignIn">
+      <mat-icon  class="menu-font">login</mat-icon>
+      <span  class="menu-font">SignIn</span>
+    </button>
+    <button mat-button class="menu-button" routerLink="/SignUp">
+      <mat-icon  class="menu-font">person</mat-icon>
+      <span  class="menu-font">SignUp</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLink="/help">
+      <mat-icon  class="menu-font">help</mat-icon>
+      <span  class="menu-font">Help</span>
+    </button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
