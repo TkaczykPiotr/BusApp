@@ -1,18 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup,  FormGroupDirective, FormControl, NgForm, Validators} from '@angular/forms'
-import {ErrorStateMatcher} from '@angular/material/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 
-
-
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -20,18 +10,36 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class RegistrationComponent {
   //loginForm : FormGroup;
-  email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('', [Validators.required, Validators.minLength(6)]);
-  passwordpwd = new FormControl('', [Validators.required, Validators.minLength(6)]);
-  matcher = new MyErrorStateMatcher();
+  email = "";
+  password = "";
+  passwordpwd = "";
   hide = true;
+  hideTwo = true;
+
   constructor(private router: Router) {
 
+  }
+
+
+  hidePassword(){
+    if(this.hide == true)
+      this.hide = false;
+    else
+      this.hide = true;
+  }
+
+
+  hidePasswordTwo(){
+    if(this.hideTwo == true)
+      this.hideTwo = false;
+    else
+      this.hideTwo = true;
   }
 
   onRegistry(){
     console.log(this.password);
     console.log(this.passwordpwd);
+
   if(this.password===this.passwordpwd){
     console.log("zarejestrowalem");
     this.router.navigate(['SignIn']);

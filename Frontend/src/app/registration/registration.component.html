@@ -3,12 +3,12 @@
       <div class="header">
           <h2>SIGN UP</h2>
       </div>
-      <form  name="registryForm" (ngSubmit)="onRegistry()">
+      <form  name="registryForm" #formctr="ngForm">
           <div class="email-input">
               <mat-form-field class="full-width" appearance="outline">
                   <mat-label>Email</mat-label>
-                  <input type="email" [errorStateMatcher]="matcher" [formControl]="email" matInput required />
-                  <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                  <input name="email" type="email" #emailctr="ngModel"  [(ngModel)]="email" matInput required [email]="true"/>
+                  <mat-error *ngIf="emailctr.hasError('email') && !emailctr.hasError('required')">
                       Required email address
                   </mat-error>
               </mat-form-field>
@@ -16,12 +16,11 @@
           <div>
               <mat-form-field class="full-width" appearance="outline">
                   <mat-label>Password</mat-label>
-                  <input  type="password" [formControl]="password" [errorStateMatcher]="matcher" matInput [type]="hide ? 'password' : 'text'" required />
-                  <button  mat-icon-button matSuffix (click)="hide = !hide"
-                      [attr.aria-label]="'Hide Password'" [attr.aria-pressed]="hide">
+                  <input  name="password" type="password"  #passwordctr="ngModel" [(ngModel)]="password"  matInput [type]="hide ? 'password' : 'text'" required [minlength]="6"/>
+                  <button  mat-icon-button matSuffix (click)="hidePassword()">
                       <mat-icon>{{ hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                   </button>
-                  <mat-error *ngIf="password.hasError('required')">
+                  <mat-error *ngIf="passwordctr.hasError('required')">
                       Required Password
                   </mat-error>
               </mat-form-field>
@@ -29,12 +28,12 @@
           <div>
             <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Comfirm password</mat-label>
-                <input  type="password" [formControl]="passwordpwd" [errorStateMatcher]="matcher" matInput [type]="hide ? 'password' : 'text'" required />
-                <button  mat-icon-button matSuffix (click)="hide = !hide"
-                    [attr.aria-label]="'Hide Password'" [attr.aria-pressed]="hide">
-                    <mat-icon>{{ hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <input  name="password" type="password"  #passwordctr="ngModel" [(ngModel)]="passwordpwd"  matInput [type]="hideTwo ? 'password' : 'text'" required [minlength]="6" />
+                <button  mat-icon-button matSuffix (click)="hidePasswordTwo()"
+                    >
+                    <mat-icon>{{ hideTwo ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
-                <mat-error *ngIf="password.hasError('required')">
+                <mat-error *ngIf="passwordctr.hasError('required')">
                     Required Password
                 </mat-error>
             </mat-form-field>
