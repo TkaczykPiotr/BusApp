@@ -21,6 +21,9 @@ import { LoginComponent } from './login/login.component';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { RegistrationComponent } from './registration/registration.component';
 import { HomeComponent } from './home/home.component';
+import { AngularFireModule } from '@angular/fire/compat'
+import { environment } from '../environments/environment';
+import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
 
 @NgModule({
   declarations: [
@@ -43,10 +46,14 @@ import { HomeComponent } from './home/home.component';
     MatSidenavModule,
     MatDividerModule,
     FormsModule,
+    //provideFirebaseApp( () => initializeApp(environment.firebase)),
+    AngularFireModule.initializeApp(environment.firebase),
 
   ],
   providers: [
-    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
+    {
+      provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
+
   ],
   bootstrap: [AppComponent]
 })

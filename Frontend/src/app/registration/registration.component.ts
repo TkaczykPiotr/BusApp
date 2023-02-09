@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup,  FormGroupDirective, FormControl, NgForm, Validators} from '@angular/forms'
 import { NavigationEnd, Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/auth.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class RegistrationComponent {
   hide = true;
   hideTwo = true;
 
-  constructor(private router: Router) {
+  constructor(private auth : AuthService ) {
 
   }
 
@@ -37,17 +38,23 @@ export class RegistrationComponent {
   }
 
   onRegistry(){
-    console.log(this.password);
-    console.log(this.passwordpwd);
 
-  if(this.password===this.passwordpwd){
-    console.log("zarejestrowalem");
-    this.router.navigate(['SignIn']);
+    if(this.email == '' || this.password == '' || this.passwordpwd == ''){
+      alert('Please enter email or password');
+      return;
+    }
 
+  if(this.password != this.passwordpwd){
+    alert('The passwords are not the same');
+    return;
   }
   else
   {
-    console.log("hasła nie są takie same");
+    this.auth.register(this.email, this.password);
+    this.email = '';
+    this.password = '';
+    this.passwordpwd = '';
+
   }
   }
 

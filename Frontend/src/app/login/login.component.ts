@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import {FormGroup,  FormGroupDirective, FormControl, NgForm, Validators} from '@angular/forms'
+import { AuthService } from 'src/app/shared/auth.service';
 
 
 
@@ -12,15 +13,25 @@ import {FormGroup,  FormGroupDirective, FormControl, NgForm, Validators} from '@
 export class LoginComponent{
 
 
-  email = "";
-  password = "";
+  email : string = "";
+  password : string = "";
   hide = true;
-  constructor() {}
+  constructor(private auth : AuthService) {}
 
-  onLogin(){
-  console.log("zalogowalem");
-  console.log(this.email);
-  console.log(this.password);
+  onLogin() {
+
+  if(this.email == '' || this.password == ''){
+      alert('Please enter email or password');
+      return;
+    }
+
+    this.auth.login(this.email, this.password);
+    this.email = '';
+    this.password = '';
   }
+
+
+
+
 
 }
