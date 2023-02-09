@@ -14,7 +14,7 @@
                 </mat-form-field>
             </div>
             <div>
-                <span class="aLink">Forgot Password</span>
+
                 <mat-form-field class="full-width" appearance="outline">
                     <mat-label>Password</mat-label>
                     <input name="password" type="password"  #passwordctr="ngModel" [(ngModel)]="password"  matInput [type]="hide ? 'password' : 'text'" required [minlength]="6"/>
@@ -27,7 +27,9 @@
                     </mat-error>
                 </mat-form-field>
             </div>
-            <button mat-flat-button color="primary" (click)="onLogin()">Login</button>
+
+            <button mat-flat-button class="button-login" color="primary" (click)="onLogin()">Login</button>
+            <a mat-button class="aLink" (click)="forgotPassword()" target="_blank">Forgot Password</a>
         </form>
     </mat-card-content>
 </mat-card>

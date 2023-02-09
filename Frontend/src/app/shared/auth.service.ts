@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { Router } from '@angular/router';
 import { GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider} from '@angular/fire/auth'
+import {AppComponent} from '../app.component'
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +41,8 @@ export class AuthService {
   logout(){
     this.fireauth.signOut().then( () => {
       localStorage.removeItem('token');
-      this.router.navigate(['SignIn']);
+      window.location.reload();
+      //this.router.navigate(['SignIn']);
     }, err => {
       alert(err.message);
 

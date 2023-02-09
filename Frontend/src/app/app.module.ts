@@ -24,13 +24,15 @@ import { HomeComponent } from './home/home.component';
 import { AngularFireModule } from '@angular/fire/compat'
 import { environment } from '../environments/environment';
 import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
+import { ConnectionComponent } from './connection/connection.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    ConnectionComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,6 @@ import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
     MatSidenavModule,
     MatDividerModule,
     FormsModule,
-    //provideFirebaseApp( () => initializeApp(environment.firebase)),
     AngularFireModule.initializeApp(environment.firebase),
 
   ],

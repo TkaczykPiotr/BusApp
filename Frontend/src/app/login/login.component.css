@@ -25,6 +25,12 @@ mat-card{
 
 .aLink{
     float: right;
-    padding-right: 60px;
+    padding-right: 10px;
+    margin-right: 10%;
     text-decoration: none;
+
+}
+
+.button-login{
+  margin-left: 35%;
 }

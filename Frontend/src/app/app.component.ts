@@ -4,6 +4,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { delay, filter } from 'rxjs/operators';
 import { NavigationEnd, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { AuthService } from 'src/app/shared/auth.service';
+
 
 @UntilDestroy()
 @Component({
@@ -15,7 +17,12 @@ export class AppComponent {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
-  constructor(private observer: BreakpointObserver, private router: Router) {}
+  logBut = false;
+  accountButton = false;
+
+  constructor(private observer: BreakpointObserver, private router: Router, private auth : AuthService) {
+
+  }
 
   ngAfterViewInit() {
     this.observer
@@ -29,6 +36,7 @@ export class AppComponent {
           this.sidenav.mode = 'side';
           this.sidenav.open();
         }
+
       });
 
     this.router.events
@@ -40,6 +48,14 @@ export class AppComponent {
         if (this.sidenav.mode === 'over') {
           this.sidenav.close();
         }
+        if(localStorage.getItem('token') == 'true'){
+          this.logBut = true;
+          this.accountButton = true;
+        }
       });
+  }
+
+  logout(){
+    this.auth.logout();
   }
 }
