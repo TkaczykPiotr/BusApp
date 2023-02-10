@@ -1,1 +1,26 @@
-<p>connection works!</p>
+<mat-card *ngFor="let conn of connectionList">
+    <mat-card-title>Connection: {{conn.from}} -> {{conn.to}}</mat-card-title>
+    <p></p>
+    <mat-card-subtitle>{{conn.date}}</mat-card-subtitle>
+
+  <mat-card-content>
+    <div class="box-time">
+      <div class="box-time-departure">
+          Departure
+          <p>21:20</p>
+      </div>
+      <div class="box-time-arrival">
+          Arrival
+        <p>22:20</p>
+      </div>
+   </div>
+
+    <div class="box-prize">
+      <p>Prize: {{conn.prize}} zl</p>
+    </div>
+
+    <button mat-raised-button class="button-buy" color="primary" >Buy</button>
+    <button mat-raised-button color="accent" >Buy a monthly pass</button>
+
+</mat-card-content>
+</mat-card>

@@ -1,0 +1,61 @@
+mat-card{
+  max-width: 1000px;
+  margin: 2em auto;
+  text-align: center;
+  max-height: 600px;
+}
+
+mat-card-title{
+  font-size: 2rem;
+}
+mat-card-subtitle{
+  font-size: 2em;
+}
+
+.box-time{
+  max-width: 400px;
+  max-height: 150px;
+  text-align: center;
+  margin: 1em auto;
+
+
+}
+
+.box-time-departure{
+  max-width: 150px;
+  max-height: 150px;
+  margin: 1% ;
+  padding: 2%;
+  font-size: 1rem;
+  font-weight: bold;
+  display: inline-block
+
+
+
+
+}
+
+.box-time-arrival{
+  max-width: 150px;
+  max-height: 150px;
+  margin: 1% ;
+  padding: 2%;
+  font-size: 1rem;
+  font-weight: bold;
+  display: inline-block
+}
+
+.box-prize{
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.button-buy{
+  padding: 2%;
+  margin: 1% ;
+
+}
+
+
+
+

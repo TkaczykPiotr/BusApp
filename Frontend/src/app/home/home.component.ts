@@ -12,5 +12,7 @@ export class HomeComponent {
   fromCity = "";
   toCity = "";
 
-  searchConnection(){};
+  searchConnection(){
+
+  };
 }
