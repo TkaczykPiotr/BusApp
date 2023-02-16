@@ -3,6 +3,8 @@ export interface Connection {
   date : string,
   from : string,
   to : string,
-  prize: string
+  prize: string,
+  timeFrom: string,
+  timeTo: string
 
 }

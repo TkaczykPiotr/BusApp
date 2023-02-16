@@ -28,3 +28,27 @@ mat-card{
   padding-right: 60px;
   text-decoration: none;
 }
+
+
+.card {
+  width: 18rem;
+  margin-bottom: 1.5rem;
+  border: none;
+}
+
+.card-title {
+  font-size: 1.25rem;
+}
+
+.card-text {
+  font-size: 1rem;
+}
+
+.price {
+  font-size: 1.25rem;
+  float: left;
+}
+
+.btn-primary {
+  float: right;
+}

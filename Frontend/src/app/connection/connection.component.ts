@@ -16,12 +16,19 @@ export class ConnectionComponent {
   from : string = '';
   to : string = '';
   prize: string = '';
+  timeFrom: string = '';
+  timeTo: string = '';
+
+  valuesConn = {};
 
   constructor(private data : DataService){
-    this.getAllConnections();
+
+      let valuesConn =   JSON.parse(localStorage.getItem('conn') || "");
+      this.getConnectionByName(valuesConn);
+
+
 
   }
-
 
   getAllConnections() {
     this.data.getAllConnection().subscribe( res => {
@@ -31,8 +38,25 @@ export class ConnectionComponent {
         return data;
       })
 
-      console.log(this.connectionList);
+      //console.log(this.connectionList);
 
+    }, err => {
+      alert("No rail connections");
+
+    })
+  }
+
+  getConnectionByName(conn?: any){
+    this.data.getConnectionByName(conn.from, conn.to).subscribe( res => {
+      if(res.length < 1){
+        alert("No rail connections");
+      }
+      this.connectionList = res.map((e : any)  => {
+        const data = e.payload.doc.data();
+        data.id = e.payload.doc.id;
+        return data;
+
+      })
     }, err => {
       alert("No rail connections");
 
