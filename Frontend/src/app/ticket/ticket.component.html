@@ -1,0 +1,31 @@
+<div class="container-fluid">
+<div class="col-md-8 mt-2">
+  <h5 class="text-danger"> Ticket List</h5>
+  <div class="card p-3 shadow">
+      <div class="card-body">
+          <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">From</th>
+                  <th scope="col">to</th>
+                  <th scope="col">Prize</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let ticket of ticketList">
+                  <td >{{ticket.id}}</td>
+                  <td>{{ticket.id}}</td>
+                  <td>{{ticket.idConnection}}</td>
+                  <td>{{ticket.idUser}}</td>
+                  <td>
+                      <button class="btn btn-outline-danger" >Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+  </div>
+</div>
+</div>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { Router } from '@angular/router';
+import { getAuth } from "firebase/auth";
 import { GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider} from '@angular/fire/auth'
 import {AppComponent} from '../app.component'
 
@@ -23,6 +24,15 @@ export class AuthService {
     }
 
     )
+  }
+
+   getUid(): string {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const uid = user?.uid;
+    console.log("uid user:" + uid);
+    return uid!;
+
   }
 
   register(email : string, password : string){

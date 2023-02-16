@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ConnectionComponent } from './connection/connection.component';
+import { TicketComponent } from './ticket/ticket.component';
 
 const routes: Routes = [
      {
@@ -23,6 +24,11 @@ const routes: Routes = [
         path : 'Connection',
         component: ConnectionComponent
       },
+      {
+        path : 'Ticket',
+        component: TicketComponent
+      },
+
 
 ];
 

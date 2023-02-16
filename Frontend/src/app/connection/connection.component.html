@@ -19,7 +19,7 @@
       <p>Prize: {{conn.prize}} zl</p>
     </div>
 
-    <button mat-raised-button class="button-buy" color="primary" >Buy</button>
+    <button mat-raised-button class="button-buy" color="primary" (click)="buyTicket(conn.id)">Buy</button>
     <button mat-raised-button color="accent" >Buy a monthly pass</button>
 
 </mat-card-content>

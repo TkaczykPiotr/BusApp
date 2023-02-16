@@ -25,6 +25,7 @@ import { AngularFireModule } from '@angular/fire/compat'
 import { environment } from '../environments/environment';
 import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
 import { ConnectionComponent } from './connection/connection.component';
+import { TicketComponent } from './ticket/ticket.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ConnectionComponent } from './connection/connection.component';
     RegistrationComponent,
     LoginComponent,
     HomeComponent,
-    ConnectionComponent
+    ConnectionComponent,
+    TicketComponent
   ],
   imports: [
     BrowserModule,
