@@ -19,4 +19,9 @@ export class DataService {
   getConnectionByName(from: string, to: string){
     return this.afs.collection('/Connection', ref => ref.where('from', '==', from).where('to', '==', to)).snapshotChanges();
   }
+
+  getConnectionById(id: any){
+    return this.afs.doc('Connection/'+id).valueChanges();
+  }
+
 }

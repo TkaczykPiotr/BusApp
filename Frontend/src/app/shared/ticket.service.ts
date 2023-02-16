@@ -18,7 +18,7 @@ export class TicketService {
 
 
   getAllTicketByUserId(id : string){
-    return this.afs.collection('/Tickets', ref => ref.where('idUser', '==', id)).snapshotChanges();
+    return this.afs.collection('Tickets', ref => ref.where('idUser', '==', id)).snapshotChanges();
   }
 
 }

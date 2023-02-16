@@ -14,6 +14,10 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDividerModule} from '@angular/material/divider';
 import {FormsModule} from '@angular/forms';
+import {MatPaginatorModule } from "@angular/material/paginator";
+import {MatTableModule } from "@angular/material/table";
+import {MatSortModule} from "@angular/material/sort";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 import {ReactiveFormsModule} from '@angular/forms';
@@ -51,6 +55,12 @@ import { TicketComponent } from './ticket/ticket.component';
     MatDividerModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule,
+    MatProgressSpinnerModule
+
+
 
   ],
   providers: [

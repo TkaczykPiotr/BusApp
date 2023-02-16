@@ -1,0 +1,14 @@
+table {
+  width: 100%;
+}
+mat-card{
+  max-width: 1000px;
+  margin: 2em auto;
+  text-align: center;
+  max-height: 600px;
+}
+
+mat-card-title{
+  font-size: 2rem;
+
+}

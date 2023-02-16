@@ -30,7 +30,6 @@ export class AuthService {
     const auth = getAuth();
     const user = auth.currentUser;
     const uid = user?.uid;
-    console.log("uid user:" + uid);
     return uid!;
 
   }
@@ -51,8 +50,10 @@ export class AuthService {
   logout(){
     this.fireauth.signOut().then( () => {
       localStorage.removeItem('token');
+      localStorage.removeItem('conn');
+      this.router.navigate(['SignIn']);
       window.location.reload();
-      //this.router.navigate(['SignIn']);
+
     }, err => {
       alert(err.message);
 
