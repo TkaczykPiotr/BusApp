@@ -15,20 +15,14 @@ import { TicketService } from '../shared/ticket.service';
 export class TicketComponent implements OnInit {
 
   ticketList : Ticket [] = [];
-
   connectionList : Connection[] = [];
-  displayedColumns: string[] = ['date', 'from', 'to', 'timeFrom', 'timeTo', 'prize', 'button'];
-  //connectionList: ArrayDataSource<Connection> = new ArrayDataSource<Connection>([]);
 
   constructor(private ticketData : TicketService, private auth : AuthService, private connectionData : DataService){
 
   }
   ngOnInit(): void {
     this.getTicket();
-  }
 
-  claimTrackBy(index: number, item: any) {
-    return item.date;
   }
 
   getTicket(){
@@ -39,26 +33,20 @@ export class TicketComponent implements OnInit {
         alert("No ticket");
       }
       this.ticketList = res.map((e : any) => e.payload.doc.data());
-      console.log('srodeczek',this.ticketList);
+      console.log('wyswietlam ticket; ', this.ticketList);
       this.getConnection();
     },error : err => {
       alert("No ticket");
     }}
     )
-    console.log('moze dalej',this.ticketList);
   }
 
   getConnection() {
-    //let data: Connection[] = [];
-
     this.ticketList.map(e => {
       this.connectionData.getConnectionById(e.idConnection).subscribe((res : any) => {
-        this.connectionList.push(res);
+        this.connectionList.push({... res});
       });
     });
-    //this.connectionList = new ArrayDataSource<Connection>(data);
-    console.log('wyswietlam; ', this.connectionList);
-
   }
 
 

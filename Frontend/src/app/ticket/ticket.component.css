@@ -1,14 +1,28 @@
-table {
-  width: 100%;
-}
+
 mat-card{
-  max-width: 1000px;
+  max-width: 1400px;
   margin: 2em auto;
   text-align: center;
   max-height: 600px;
 }
 
 mat-card-title{
-  font-size: 2rem;
+  font-size: 3rem;
 
 }
+
+.table{
+  font-size: 2em;
+
+}
+
+
+.rows{
+  box-shadow: 5px 5px 10px;
+  margin-block: 5%;
+
+
+
+}
+
+
