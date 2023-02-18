@@ -19,6 +19,8 @@ import {MatTableModule } from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 import {ReactiveFormsModule} from '@angular/forms';
@@ -33,6 +35,7 @@ import { ConnectionComponent } from './connection/connection.component';
 import { TicketComponent } from './ticket/ticket.component';
 import { AccountComponent } from './account/account.component';
 import { DialogPersonalComponent } from './dialog-personal/dialog-personal.component';
+import { DialogMonthlyComponent } from './dialog-monthly/dialog-monthly.component';
 
 
 @NgModule({
@@ -45,6 +48,7 @@ import { DialogPersonalComponent } from './dialog-personal/dialog-personal.compo
     TicketComponent,
     AccountComponent,
     DialogPersonalComponent,
+    DialogMonthlyComponent,
 
   ],
   imports: [
@@ -66,7 +70,8 @@ import { DialogPersonalComponent } from './dialog-personal/dialog-personal.compo
     MatTableModule,
     MatSortModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
 
 
 

@@ -3,5 +3,6 @@ export interface TicketMonthly {
   idUser: string,
   from: string,
   to: string,
-  month: string
+  month: string,
+  prize: string
 }

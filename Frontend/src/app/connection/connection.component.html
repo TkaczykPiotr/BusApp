@@ -20,7 +20,7 @@
     </div>
 
     <button mat-raised-button class="button-buy" color="primary" (click)="buyTicket(conn.id)">Buy</button>
-    <button mat-raised-button color="accent" >Buy a monthly pass</button>
+    <button mat-raised-button color="accent" (click)="buyTicketMonthly(conn.id, conn.from, conn.to, conn.prize)">Buy a monthly pass</button>
 
 </mat-card-content>
 </mat-card>

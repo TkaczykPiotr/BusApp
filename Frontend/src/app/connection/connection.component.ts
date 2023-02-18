@@ -8,6 +8,9 @@ import { PersonService } from '../shared/person.service';
 import { TicketService } from '../shared/ticket.service';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { DialogPersonalComponent } from '../dialog-personal/dialog-personal.component';
+import { TicketMonthly } from '../model/ticket-monthly';
+import { TicketMonthlyService } from '../shared/ticket-monthly.service';
+import { DialogMonthlyComponent } from '../dialog-monthly/dialog-monthly.component';
 
 @Component({
   selector: 'app-connection',
@@ -17,6 +20,8 @@ import { DialogPersonalComponent } from '../dialog-personal/dialog-personal.comp
 export class ConnectionComponent implements OnInit {
 
   connectionList : Connection[] = [];
+
+  month: '';
 
   ticketObj: Ticket = {
     id: '',
@@ -32,10 +37,12 @@ export class ConnectionComponent implements OnInit {
   timeFrom: string = '';
   timeTo: string = '';
 
+
   valuesConn = {};
 
   constructor(private data : DataService,
     private ticketData : TicketService,
+    private ticketMonthlyData: TicketMonthlyService,
     private auth : AuthService,
     private router: Router,
     private personData : PersonService,
@@ -81,6 +88,28 @@ export class ConnectionComponent implements OnInit {
   }
 
 
+  buyTicketMonthly(id : string, from: string, to: string, prize: string){
+    if(localStorage.getItem('token') == null){
+      this.router.navigate(['/SignIn']);
+    }
+    else
+    {
+     const idUid = this.auth.getUid();
+     this.personData.checkPerson(idUid).subscribe(res => {
+        if(res.length == 0){
+          this.openDialog();
+        }
+        else
+        {
+          this.openDialogMonthly(id,from,to,prize);
+          localStorage.removeItem('conn');
+          this.router.navigate(['/Home']);
+        }
+      })
+    }
+  }
+
+
   buyTicket(id : string){
     if(localStorage.getItem('token') == null){
       this.router.navigate(['/SignIn']);
@@ -107,8 +136,15 @@ export class ConnectionComponent implements OnInit {
      this.ticketObj.id = '';
      this.ticketObj.idConnection = id;
      this.ticketObj.idUser = this.auth.getUid();
-    this.ticketData.addTicket(this.ticketObj);
+     this.ticketData.addTicket(this.ticketObj);
+  }
 
+  createTicketMonthly(id : string,from: string, to: string, prize: string, month: string){
+    const prizeReduction = (parseInt(prize) * 30)*0.3
+    const prizeToString: string = prizeReduction.toString();
+    const idU = this.auth.getUid();
+    let ticket : TicketMonthly = {id: '', idUser: idU, from: from, to: to, month: month, prize: prizeToString};
+    this.ticketMonthlyData.addTicket(ticket);
   }
 
   openDialog(): void {
@@ -117,6 +153,25 @@ export class ConnectionComponent implements OnInit {
         this.router.navigate(['/Account']);
     });
   }
+  openDialogMonthly(id : string,from: string, to: string, prize: string): void {
+    const dialogRef = this.dialog.open(DialogMonthlyComponent, {
+      data: {name: this.month},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      if(result){
+        this.month = result;
+        this.createTicketMonthly(id,from,to,prize,result);
+      }
+      else{
+        alert('Month is not selected');
+      }
+
+
+    });
+  }
+
 
 }
 
