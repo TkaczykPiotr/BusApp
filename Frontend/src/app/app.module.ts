@@ -30,6 +30,7 @@ import { environment } from '../environments/environment';
 import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
 import { ConnectionComponent } from './connection/connection.component';
 import { TicketComponent } from './ticket/ticket.component';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { TicketComponent } from './ticket/ticket.component';
     LoginComponent,
     HomeComponent,
     ConnectionComponent,
-    TicketComponent
+    TicketComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,

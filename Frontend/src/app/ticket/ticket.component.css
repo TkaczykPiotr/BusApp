@@ -13,6 +13,8 @@ mat-card-title{
 
 .table{
   font-size: 2em;
+  border-collapse: separate;
+  border-spacing: 0 15px;
 
 }
 
@@ -20,9 +22,6 @@ mat-card-title{
 .rows{
   box-shadow: 5px 5px 10px;
   margin-block: 5%;
-
-
-
 }
 
 

@@ -1,0 +1,38 @@
+<mat-card>
+  <mat-card-content>
+      <div class="header">
+          <h2>COMPLETE YOUR PERSONAL DETAILS</h2>
+      </div>
+      <form  name="accountForm"  #formctr="ngForm">
+          <div class="text-input">
+              <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Name</mat-label>
+                  <input name="name" type="text" #namectr="ngModel"  [(ngModel)]="name" matInput required/>
+                  <mat-error *ngIf="namectr.hasError('required')">
+                      Required Name
+                  </mat-error>
+              </mat-form-field>
+          </div>
+          <div>
+              <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Surname</mat-label>
+                  <input name="surname" type="text"  #surnamectr="ngModel" [(ngModel)]="surname"  matInput required/>
+                  <mat-error *ngIf="surnamectr.hasError('required')">
+                      Required Surname
+                  </mat-error>
+              </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Age</mat-label>
+                <input name="age" type="text"  #agectr="ngModel" [(ngModel)]="age"  matInput required/>
+                <mat-error *ngIf="agectr.hasError('required')">
+                    Required Age
+                </mat-error>
+            </mat-form-field>
+        </div>
+          <button mat-flat-button color="primary" (click)="savePersonalData()">Save</button>
+      </form>
+  </mat-card-content>
+</mat-card>
+

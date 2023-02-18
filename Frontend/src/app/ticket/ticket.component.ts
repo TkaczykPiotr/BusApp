@@ -1,6 +1,5 @@
-import { ArrayDataSource } from '@angular/cdk/collections';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { DocumentChangeAction } from '@angular/fire/compat/firestore';
+
+import { Component, OnInit } from '@angular/core';
 import { Connection } from '../model/connection';
 import { Ticket } from '../model/ticket';
 import { AuthService } from '../shared/auth.service';
