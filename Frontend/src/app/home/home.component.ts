@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 
 
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
   fromCity = "";
   toCity = "";
@@ -17,11 +17,16 @@ export class HomeComponent {
 
   }
 
+  ngOnInit(): void {
+    if(localStorage.getItem('conn') !== null){
+      this.router.navigate(['/Connection']);
+    }
+  }
+
   searchConnection(){
    let conn = {from: this.fromCity, to: this.toCity}
    localStorage.setItem('conn', JSON.stringify(conn));
    this.router.navigate(['/Connection']);
-
 
   };
 }

@@ -19,8 +19,6 @@ export class AccountComponent {
 
   }
 
-
-
   savePersonalData(){
    const id = this.auth.getUid();
    let person : Person = {id: '',idUser: id, name: this.name, surname: this.surname, age: this.age}

@@ -18,6 +18,7 @@ import {MatPaginatorModule } from "@angular/material/paginator";
 import {MatTableModule } from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 import {ReactiveFormsModule} from '@angular/forms';
@@ -31,6 +32,8 @@ import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
 import { ConnectionComponent } from './connection/connection.component';
 import { TicketComponent } from './ticket/ticket.component';
 import { AccountComponent } from './account/account.component';
+import { DialogPersonalComponent } from './dialog-personal/dialog-personal.component';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +43,9 @@ import { AccountComponent } from './account/account.component';
     HomeComponent,
     ConnectionComponent,
     TicketComponent,
-    AccountComponent
+    AccountComponent,
+    DialogPersonalComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -60,16 +65,20 @@ import { AccountComponent } from './account/account.component';
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule
 
 
 
   ],
   providers: [
     {
-      provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
+      provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher,
+
+    }
 
   ],
-  bootstrap: [AppComponent]
+  entryComponents:[MatDialogModule],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -32,7 +32,6 @@ export class TicketComponent implements OnInit {
         alert("No ticket");
       }
       this.ticketList = res.map((e : any) => e.payload.doc.data());
-      console.log('wyswietlam ticket; ', this.ticketList);
       this.getConnection();
     },error : err => {
       alert("No ticket");
@@ -41,9 +40,11 @@ export class TicketComponent implements OnInit {
   }
 
   getConnection() {
+
     this.ticketList.map(e => {
       this.connectionData.getConnectionById(e.idConnection).subscribe((res : any) => {
         this.connectionList.push({... res});
+
       });
     });
   }

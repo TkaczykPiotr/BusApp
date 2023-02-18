@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Connection } from '../model/connection';
 import { Ticket } from '../model/ticket';
@@ -6,6 +6,8 @@ import { AuthService } from '../shared/auth.service';
 import { DataService } from '../shared/data.service';
 import { PersonService } from '../shared/person.service';
 import { TicketService } from '../shared/ticket.service';
+import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import { DialogPersonalComponent } from '../dialog-personal/dialog-personal.component';
 
 @Component({
   selector: 'app-connection',
@@ -32,30 +34,35 @@ export class ConnectionComponent implements OnInit {
 
   valuesConn = {};
 
-  constructor(private data : DataService, private ticketData : TicketService, private auth : AuthService, private router: Router, private personData : PersonService){
+  constructor(private data : DataService,
+    private ticketData : TicketService,
+    private auth : AuthService,
+    private router: Router,
+    private personData : PersonService,
+    public dialog: MatDialog){
 
   }
 
 
   ngOnInit(): void {
-    let valuesConn =   JSON.parse(localStorage.getItem('conn') || "");
+    let valuesConn = JSON.parse(localStorage.getItem('conn') || "");
     this.getConnectionByName(valuesConn);
   }
 
 
 
-  getAllConnections() {
-    this.data.getAllConnection().subscribe( res => {
-      this.connectionList = res.map((e : any)  => {
-        const data = e.payload.doc.data();
-        data.id = e.payload.doc.id;
-        return data;
-      })
-    }, err => {
-      alert("No rail connections");
+  // getAllConnections() {
+  //   this.data.getAllConnection().subscribe( res => {
+  //     this.connectionList = res.map((e : any)  => {
+  //       const data = e.payload.doc.data();
+  //       data.id = e.payload.doc.id;
+  //       return data;
+  //     })
+  //   }, err => {
+  //     alert("No rail connections");
 
-    })
-  }
+  //   })
+  // }
 
   getConnectionByName(conn?: any){
     this.data.getConnectionByName(conn.from, conn.to).subscribe( res => {
@@ -66,7 +73,6 @@ export class ConnectionComponent implements OnInit {
         const data = e.payload.doc.data();
         data.id = e.payload.doc.id;
         return data;
-
       })
     }, err => {
       alert("No rail connections");
@@ -81,16 +87,16 @@ export class ConnectionComponent implements OnInit {
     }
     else
     {
-      const idUid = this.auth.getUid();
-
+     const idUid = this.auth.getUid();
      this.personData.checkPerson(idUid).subscribe(res => {
         if(res.length == 0){
-          this.router.navigate(['/Account']);
+          this.openDialog();
         }
         else
         {
           this.createTicket(id);
-          this.router.navigate(['/Ticket']);
+          localStorage.removeItem('conn');
+          this.router.navigate(['/Home']);
         }
       })
     }
@@ -101,10 +107,17 @@ export class ConnectionComponent implements OnInit {
      this.ticketObj.id = '';
      this.ticketObj.idConnection = id;
      this.ticketObj.idUser = this.auth.getUid();
-
     this.ticketData.addTicket(this.ticketObj);
 
   }
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogPersonalComponent);
+    dialogRef.afterClosed().subscribe(result => {
+        this.router.navigate(['/Account']);
+    });
+  }
 
 }
+
+
