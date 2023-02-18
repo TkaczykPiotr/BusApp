@@ -20,6 +20,7 @@ import {MatSortModule} from "@angular/material/sort";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
+import {MatListModule} from '@angular/material/list';
 
 
 
@@ -71,9 +72,8 @@ import { DialogMonthlyComponent } from './dialog-monthly/dialog-monthly.componen
     MatSortModule,
     MatProgressSpinnerModule,
     MatDialogModule,
-    MatSelectModule
-
-
+    MatSelectModule,
+    MatListModule
 
   ],
   providers: [

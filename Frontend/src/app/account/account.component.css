@@ -5,6 +5,7 @@ mat-card{
   max-height: 600px;
 }
 
+
 .header{
   text-align: center;
 
@@ -15,9 +16,8 @@ mat-card{
 
 }
 
-.forgot-password{
-  padding-left: 0px;
-}
+
+
 
 .text-input{
   padding-top: 10px;
@@ -28,5 +28,7 @@ mat-card{
   padding-right: 60px;
   text-decoration: none;
 }
+
+
 
 

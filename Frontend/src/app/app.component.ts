@@ -59,6 +59,12 @@ export class AppComponent {
   }
 
   logout(){
+    this.logBut = false;
+    this.accountButton = false
     this.auth.logout();
+
+
+
+
   }
 }

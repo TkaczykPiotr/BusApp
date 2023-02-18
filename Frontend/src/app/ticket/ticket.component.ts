@@ -2,8 +2,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Connection } from '../model/connection';
 import { Ticket } from '../model/ticket';
+import { TicketMonthly } from '../model/ticket-monthly';
 import { AuthService } from '../shared/auth.service';
 import { DataService } from '../shared/data.service';
+import { TicketMonthlyService } from '../shared/ticket-monthly.service';
 import { TicketService } from '../shared/ticket.service';
 
 @Component({
@@ -14,25 +16,45 @@ import { TicketService } from '../shared/ticket.service';
 export class TicketComponent implements OnInit {
 
   ticketList : Ticket [] = [];
+  ticketMonthlyList : TicketMonthly [] = [];
   connectionList : Connection[] = [];
 
-  constructor(private ticketData : TicketService, private auth : AuthService, private connectionData : DataService){
+  isTicket = false;
+
+  constructor(
+    private ticketData : TicketService,
+    private auth : AuthService,
+    private connectionData : DataService,
+    private ticketMonthlyData : TicketMonthlyService){
 
   }
   ngOnInit(): void {
     this.getTicket();
+    this.getTicketMonthly();
 
   }
 
   getTicket(){
     const uid = this.auth.getUid();
-    let tmp : any;
     this.ticketData.getAllTicketByUserId(uid).subscribe( {next : (res : any) => {
       if(res.length < 1){
-        alert("No ticket");
+        this.isTicket = true;
       }
       this.ticketList = res.map((e : any) => e.payload.doc.data());
       this.getConnection();
+    },error : err => {
+      alert("No ticket");
+    }}
+    )
+  }
+
+  getTicketMonthly(){
+    const uid = this.auth.getUid();
+    this.ticketMonthlyData.getAllTicketByUserId(uid).subscribe( {next : (res : any) => {
+      if(res.length < 1){
+        this.isTicket = true;
+      }
+      this.ticketMonthlyList = res.map((e : any) => e.payload.doc.data());
     },error : err => {
       alert("No ticket");
     }}

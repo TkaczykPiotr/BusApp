@@ -47,16 +47,15 @@ export class AuthService {
   }
 
   // wy;logowanie
-  logout(){
+  async logout(){
     this.fireauth.signOut().then( () => {
       localStorage.removeItem('token');
       localStorage.removeItem('conn');
-      this.router.navigate(['SignIn']);
-      window.location.reload();
 
     }, err => {
       alert(err.message);
-
     })
+    await this.router.navigate(['Home']);
+    location.reload();
   }
 }

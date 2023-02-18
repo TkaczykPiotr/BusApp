@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card *ngIf="!isPerson">
   <mat-card-content>
       <div class="header">
           <h2>COMPLETE YOUR PERSONAL DETAILS</h2>
@@ -33,6 +33,21 @@
         </div>
           <button mat-flat-button color="primary" (click)="savePersonalData()">Save</button>
       </form>
+  </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="isPerson">
+  <mat-card-content>
+    <div class="header">
+        <h2>PERSONAL DETAILS</h2>
+    </div>
+    <mat-list role="list" *ngFor="let data of personList">
+      <mat-list-item role="listitem">Name: <b>{{data.name}}</b></mat-list-item>
+      <mat-list-item role="listitem">Surname: <b>{{data.surname}}</b></mat-list-item>
+      <mat-list-item role="listitem">Age: <b>{{data.age}}</b></mat-list-item>
+
+    </mat-list>
+    <button mat-flat-button color="primary" (click)="changeData()">Change personal details</button>
   </mat-card-content>
 </mat-card>
 
