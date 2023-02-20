@@ -77,8 +77,12 @@ export class TicketComponent implements OnInit {
     let data: string = id;
     localStorage.setItem('pdf', data);
     this.router.navigate(['Generate']);
+  }
 
-
+  downloadTicketMonthly(id: string){
+    let data: string = id;
+    localStorage.setItem('pdfM', data);
+    this.router.navigate(['Generate']);
   }
 
 }

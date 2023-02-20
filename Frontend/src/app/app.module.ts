@@ -21,7 +21,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
-
+import { QRCodeModule } from 'angularx-qrcode';
 
 
 import {ReactiveFormsModule} from '@angular/forms';
@@ -75,7 +75,9 @@ import { GeneratedpdfComponent } from './generatedpdf/generatedpdf.component';
     MatProgressSpinnerModule,
     MatDialogModule,
     MatSelectModule,
-    MatListModule
+    MatListModule,
+    QRCodeModule
+
 
   ],
   providers: [

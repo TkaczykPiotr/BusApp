@@ -159,7 +159,6 @@ export class ConnectionComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
       if(result){
         this.month = result;
         this.createTicketMonthly(id,from,to,prize,result);

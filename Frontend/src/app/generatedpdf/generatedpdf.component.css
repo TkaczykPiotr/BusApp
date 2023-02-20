@@ -1,5 +1,5 @@
 .invoice-card {
-  max-width: 500px;
+  max-width: 600px;
   margin: 50px auto;
   padding: 20px;
 }
@@ -35,4 +35,9 @@ mat-card-actions {
 }
 mat-card-header{
  text-align: center;
+}
+
+.qrcode{
+  display: flex;
+  justify-content: center;
 }

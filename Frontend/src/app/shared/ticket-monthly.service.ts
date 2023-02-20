@@ -18,4 +18,10 @@ export class TicketMonthlyService {
   getAllTicketByUserId(id : string){
     return this.afs.collection('TicketsMonthly', ref => ref.where('idUser', '==', id)).snapshotChanges();
   }
+
+  getTicketById(id : string){
+    return this.afs.collection('TicketsMonthly', ref => ref.where('id', '==', id)).snapshotChanges();
+  }
+
+
 }

@@ -57,7 +57,7 @@
         <td>{{ticket.month}}</td>
         <td>{{ticket.prize}} zl.</td>
         <td>
-          <button mat-flat-button class="button-login" color="primary">DownLoad</button>
+          <button mat-flat-button class="button-login" color="primary" (click)="downloadTicketMonthly(ticket.id)">DownLoad</button>
         </td>
 
       </tr>

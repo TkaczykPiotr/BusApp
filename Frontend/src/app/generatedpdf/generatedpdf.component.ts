@@ -6,6 +6,11 @@ import { Connection } from '../model/connection';
 import { Person } from '../model/person';
 import { DataService } from '../shared/data.service';
 import { PersonService } from '../shared/person.service';
+import { TicketMonthlyService } from '../shared/ticket-monthly.service';
+import { TicketMonthly } from '../model/ticket-monthly';
+
+
+
 
 @Component({
   selector: 'app-generatedpdf',
@@ -16,19 +21,40 @@ export class GeneratedpdfComponent implements OnInit {
 
 
   @ViewChild('invoice') invoiceElement!: ElementRef;
+  public myQRCode: string = this.generateNumber();
   connectionList : Connection[] = [];
   personList : Person[] = [];
+  ticketList : TicketMonthly[] = [];
   date = this.getCurrentDate();
   tax = 0;
   prizeBefore = 0;
-  constructor(private auth: AuthService, private connectionData : DataService, private personData : PersonService) { }
+  qrcodeImage: string;
+  isTicket: boolean = false;
+  constructor(private auth: AuthService,
+    private connectionData : DataService,
+    private personData : PersonService,
+    private ticketData : TicketMonthlyService
+   ) { }
 
   ngOnInit(): void {
-    const idConn = localStorage.getItem('pdf')!;
+    if(localStorage.getItem('pdf') != null){
+      const idConn = localStorage.getItem('pdf')!;
+      this.getConnectionById(idConn);
+      this.isTicket = true;
+      localStorage.removeItem('pdf');
+    }
+    if(localStorage.getItem('pdfM') != null){
+      const idTick = localStorage.getItem('pdfM')!;
+      this.getTicketById(idTick);
+      this.isTicket = false;
+      localStorage.removeItem('pdfM');
+
+    }
+
     const idUser = this.auth.getUid();
-    this.getConnectionById(idConn);
     this.getPersonById(idUser);
-    localStorage.removeItem('pdf');
+
+
 
   }
 
@@ -63,6 +89,18 @@ export class GeneratedpdfComponent implements OnInit {
         })
     });
   }
+
+  getTicketById(id: string){
+    this.ticketData.getTicketById(id).subscribe((res: any) => {
+      this.ticketList = res.map((e : any)  => {
+        const data = e.payload.doc.data();
+        this.prizeBefore = parseInt(data.prize) * 0.9;
+        this.tax = parseInt(data.prize) * 0.1;
+        data.id = e.payload.doc.id;
+        return data;
+      })
+  });
+  }
   getCurrentDate(): string {
     const currentDate = new Date();
     const day = currentDate.getDate().toString().padStart(2, '0');
@@ -70,6 +108,14 @@ export class GeneratedpdfComponent implements OnInit {
     const year = currentDate.getFullYear().toString();
     return `${day}/${month}/${year}`;
   }
+
+  generateNumber(){
+    const max = 100000000;
+    return Math.floor(Math.random() * max).toString();
+
+  }
+
+
 
 }
 

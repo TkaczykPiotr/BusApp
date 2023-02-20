@@ -1,10 +1,15 @@
 <div #invoice>
+<div *ngIf="isTicket">
 <mat-card class="invoice-card" >
   <mat-card-header>
     <mat-card-title>Ticket</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <table class="invoice-table">
+      <tr>
+        <td>Ticket Number:</td>
+        <td>{{myQRCode}}</td>
+      </tr>
       <tr>
         <td>Date:</td>
         <td>{{getCurrentDate()}}</td>
@@ -25,6 +30,7 @@
     <table class="invoice-table">
       <tr>
         <th>Description</th>
+        <th>Departure date</th>
         <th>From</th>
         <th>To</th>
         <th>Departure</th>
@@ -33,6 +39,7 @@
       </tr>
       <tr *ngFor="let conn of connectionList">
         <td>Ticket</td>
+        <td>{{conn.date}}</td>
         <td>{{conn.from}}</td>
         <td>{{conn.to}}</td>
         <td>{{conn.timeFrom}}</td>
@@ -41,18 +48,77 @@
 
       </tr>
       <tr >
-        <td colspan="5">Tax (10%)</td>
-        <td>{{tax}} zl.</td>
+        <td colspan="6">Tax (10%)</td>
+        <td>{{tax.toFixed(1)}} zl.</td>
       </tr>
       <tr *ngFor="let conn of connectionList">
-        <td colspan="5">Total</td>
+        <td colspan="6">Total</td>
         <td>{{conn.prize}} zl.</td>
       </tr>
     </table>
+    <qrcode class="qrcode" [qrdata]="myQRCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
   </mat-card-content>
-
-
+    <p>The ticket should be presented for inspection in the form of a printout on A4 paper or displayed on an electronic device.</p>
 </mat-card>
+</div>
+
+<div *ngIf="!isTicket">
+  <mat-card class="invoice-card" >
+    <mat-card-header>
+      <mat-card-title>Ticket Monthly</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <table class="invoice-table">
+        <tr>
+          <td>Ticket Number:</td>
+          <td>{{myQRCode}}</td>
+        </tr>
+        <tr>
+          <td>Date:</td>
+          <td>{{getCurrentDate()}}</td>
+        </tr>
+        <tr *ngFor="let person of personList">
+          <td>Name:</td>
+          <td>{{person.name}}</td>
+        </tr>
+        <tr *ngFor="let person of personList">
+          <td>Surname:</td>
+          <td>{{person.surname}}</td>
+        </tr>
+        <tr *ngFor="let person of personList">
+          <td>Age:</td>
+          <td>{{person.age}}</td>
+        </tr>
+      </table>
+      <table class="invoice-table">
+        <tr>
+          <th>Description</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Month</th>
+          <th>Amount</th>
+        </tr>
+        <tr *ngFor="let ticket of ticketList">
+          <td>Ticket Monthly</td>
+          <td>{{ticket.from}}</td>
+          <td>{{ticket.to}}</td>
+          <td>{{ticket.month}}</td>
+          <td>{{prizeBefore.toFixed(1)}} zl.</td>
+        </tr>
+        <tr >
+          <td colspan="4">Tax (10%)</td>
+          <td>{{tax.toFixed(1)}} zl.</td>
+        </tr>
+        <tr *ngFor="let ticket of ticketList">
+          <td colspan="4">Total</td>
+          <td>{{ticket.prize}} zl.</td>
+        </tr>
+      </table>
+      <qrcode class="qrcode" [qrdata]="myQRCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+    </mat-card-content>
+      <p>The ticket should be presented for inspection in the form of a printout on A4 paper or displayed on an electronic device.</p>
+  </mat-card>
+  </div>
 </div>
 <mat-card-actions>
   <button mat-raised-button color="primary" (click)="generatePDF()">Download</button>
