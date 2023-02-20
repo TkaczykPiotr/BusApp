@@ -18,4 +18,6 @@ export class PersonService {
   checkPerson(id: string){
     return this.afs.collection('Person', ref => ref.where('idUser', '==', id)).snapshotChanges();
   }
+
+
 }

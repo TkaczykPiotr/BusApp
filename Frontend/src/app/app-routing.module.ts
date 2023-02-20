@@ -7,6 +7,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { ConnectionComponent } from './connection/connection.component';
 import { TicketComponent } from './ticket/ticket.component';
 import { AccountComponent } from './account/account.component';
+import { GeneratedpdfComponent } from './generatedpdf/generatedpdf.component';
 
 const routes: Routes = [
      {
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path : 'Account',
         component: AccountComponent
+      },
+      {
+        path : 'Generate',
+        component: GeneratedpdfComponent
       },
 
 

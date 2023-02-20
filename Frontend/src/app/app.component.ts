@@ -5,6 +5,7 @@ import { delay, filter } from 'rxjs/operators';
 import { NavigationEnd, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { AuthService } from 'src/app/shared/auth.service';
+import { GeneratedpdfComponent } from './generatedpdf/generatedpdf.component';
 
 
 @UntilDestroy()
@@ -23,7 +24,11 @@ export class AppComponent {
   logBut = false;
   accountButton = false;
 
-  constructor(private observer: BreakpointObserver, private router: Router, private auth : AuthService) {
+  constructor(
+    private observer: BreakpointObserver,
+    private router: Router,
+     private auth : AuthService,
+     ) {
 
   }
 
@@ -62,9 +67,7 @@ export class AppComponent {
     this.logBut = false;
     this.accountButton = false
     this.auth.logout();
-
-
-
-
   }
+
+
 }

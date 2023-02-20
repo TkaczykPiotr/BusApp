@@ -1,0 +1,61 @@
+<div #invoice>
+<mat-card class="invoice-card" >
+  <mat-card-header>
+    <mat-card-title>Ticket</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <table class="invoice-table">
+      <tr>
+        <td>Date:</td>
+        <td>{{getCurrentDate()}}</td>
+      </tr>
+      <tr *ngFor="let person of personList">
+        <td>Name:</td>
+        <td>{{person.name}}</td>
+      </tr>
+      <tr *ngFor="let person of personList">
+        <td>Surname:</td>
+        <td>{{person.surname}}</td>
+      </tr>
+      <tr *ngFor="let person of personList">
+        <td>Age:</td>
+        <td>{{person.age}}</td>
+      </tr>
+    </table>
+    <table class="invoice-table">
+      <tr>
+        <th>Description</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Departure</th>
+        <th>Arrival</th>
+        <th>Amount</th>
+      </tr>
+      <tr *ngFor="let conn of connectionList">
+        <td>Ticket</td>
+        <td>{{conn.from}}</td>
+        <td>{{conn.to}}</td>
+        <td>{{conn.timeFrom}}</td>
+        <td>{{conn.timeTo}}</td>
+        <td>{{prizeBefore.toFixed(1)}} zl.</td>
+
+      </tr>
+      <tr >
+        <td colspan="5">Tax (10%)</td>
+        <td>{{tax}} zl.</td>
+      </tr>
+      <tr *ngFor="let conn of connectionList">
+        <td colspan="5">Total</td>
+        <td>{{conn.prize}} zl.</td>
+      </tr>
+    </table>
+  </mat-card-content>
+
+
+</mat-card>
+</div>
+<mat-card-actions>
+  <button mat-raised-button color="primary" (click)="generatePDF()">Download</button>
+</mat-card-actions>
+
+

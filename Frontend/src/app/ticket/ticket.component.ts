@@ -1,5 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import { Connection } from '../model/connection';
 import { Ticket } from '../model/ticket';
 import { TicketMonthly } from '../model/ticket-monthly';
@@ -25,7 +26,8 @@ export class TicketComponent implements OnInit {
     private ticketData : TicketService,
     private auth : AuthService,
     private connectionData : DataService,
-    private ticketMonthlyData : TicketMonthlyService){
+    private ticketMonthlyData : TicketMonthlyService,
+    private router : Router){
 
   }
   ngOnInit(): void {
@@ -71,5 +73,12 @@ export class TicketComponent implements OnInit {
     });
   }
 
+  downloadTicket(id: string){
+    let data: string = id;
+    localStorage.setItem('pdf', data);
+    this.router.navigate(['Generate']);
+
+
+  }
 
 }

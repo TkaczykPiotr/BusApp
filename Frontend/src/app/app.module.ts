@@ -37,6 +37,7 @@ import { TicketComponent } from './ticket/ticket.component';
 import { AccountComponent } from './account/account.component';
 import { DialogPersonalComponent } from './dialog-personal/dialog-personal.component';
 import { DialogMonthlyComponent } from './dialog-monthly/dialog-monthly.component';
+import { GeneratedpdfComponent } from './generatedpdf/generatedpdf.component';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { DialogMonthlyComponent } from './dialog-monthly/dialog-monthly.componen
     AccountComponent,
     DialogPersonalComponent,
     DialogMonthlyComponent,
+    GeneratedpdfComponent,
 
   ],
   imports: [
@@ -78,7 +80,7 @@ import { DialogMonthlyComponent } from './dialog-monthly/dialog-monthly.componen
   ],
   providers: [
     {
-      provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher,
+      provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher
 
     }
 
